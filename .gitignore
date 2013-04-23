@@ -10,6 +10,9 @@
 # http://github.com/RailsApps/rails-composer/issues
 #----------------------------------------------------------------------------
 
+# rubymine
+/.idea
+
 # bundler state
 /.bundle
 /vendor/bundle/
