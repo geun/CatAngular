@@ -17,16 +17,24 @@ CatAngular::Application.configure do
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
   # change to true to allow email to be sent during development
-  config.action_mailer.perform_deliveries = false
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default :charset => "utf-8"  
 
-    config.action_mailer.smtp_settings = {
-      :address   => "smtp.mandrillapp.com",
-      :port      => 25,
-      :user_name => ENV["MANDRILL_USERNAME"],
-      :password  => ENV["MANDRILL_API_KEY"]
-    }
+    #config.action_mailer.smtp_settings = {
+    #  :address   => "smtp.mandrillapp.com",
+    #  :port      => 25,
+    #  :user_name => ENV["MANDRILL_USERNAME"],
+    #  :password  => ENV["MANDRILL_API_KEY"]
+    #}
+
+  ActionMailer::Base.smtp_settings = {
+      :user_name => 'chattingcat-ca88a6434e40b363',
+      :password => 'e16ae0bb9f3b652f',
+      :address => 'mailtrap.io',
+      :port => '2525',
+      :authentication => :plain
+  }
 
 
 
