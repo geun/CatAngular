@@ -10,7 +10,23 @@
         %th
         %th
     %tbody
-      -#%tr{ng:{repeat:"user in users"}}
       %tr{"ng-repeat" => "user in users"}
         %td
           {{user.name}}
+        %td
+          %a{"href"=>"/users/{{user.id}}"}
+            {{user.email}}
+        %td
+          {{user.created_at | date:'yy/MM/dd'}}
+        %td
+          %span{ng:{show:"user.winner", class:"{highlight: user == lastWinner}"}, class:"winner"} WINNER
+
+
+
+%form{"ng-submit" => "addUser()"}
+  %input{type:"text", "ng-model"=>"newUser.email"}
+  %input{type:"submit", value:"Add", class:'btn'}
+
+{{newUser.email}}
+
+%button{"ng-click"=> "drawWinner()", class:'btn'} Draw Winner

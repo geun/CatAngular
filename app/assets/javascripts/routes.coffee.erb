@@ -13,18 +13,20 @@
 root = global ? window
 angular = root.angular
 
-thisApp = angular.module("CattingCat",["ngResource"]).config(['$routeProvider', '$locationProvider',
+thisApp = angular.module("CattingCat",['ngResource']).config(['$routeProvider', '$locationProvider',
     ($routeProvider, $locationProvider) ->
         #$locationProvider.hashPrefix('');
         $locationProvider.html5Mode true
-        $routeProvider.when("/",
-            controller: UsersIndexCtrl
-            templateUrl: "<%= asset_path('users/index.html') %>"
-        ).when("/users",
-            controller: UsersIndexCtrl
-            templateUrl: '<%= asset_path("users/index.html") %>'
-        ).otherwise redirectTo: "/"
+        $routeProvider
+        .when("/", controller: UsersIndexCtrl, templateUrl: "<%= asset_path('users/index.html') %>")
+        .when("/users", controller: UsersIndexCtrl, templateUrl: '<%= asset_path("users/index.html") %>')
+        .when("/users/:id", controller: UsersShowCtrl, templateUrl: '<%= asset_path("users/show.html") %>')
+        .otherwise redirectTo: "/"
 ])
+thisApp.factory "User", ["$resource", ($resource) ->
+    $resource("/users/:id", {id: "@id"}, {update: {method: "PUT"}})
+]
+
 
 root.thisApp = thisApp
 
