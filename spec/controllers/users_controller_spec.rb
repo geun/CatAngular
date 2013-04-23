@@ -3,7 +3,7 @@ require 'spec_helper'
 describe UsersController do
 
   before (:each) do
-    @user = FactoryGirl.create(:user)
+    @user = FactoryGirl.create(:users)
     sign_in @user
   end
 
@@ -16,7 +16,7 @@ describe UsersController do
     
     it "should find the right user" do
       get :show, :id => @user.id
-      assigns(:user).should == @user
+      assigns(:users).should == @user
     end
     
   end
